@@ -4,91 +4,316 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mente Pyme</title>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  body { font-family: Arial, sans-serif; margin:0; padding:0; line-height:1.6; }
-  header { background:#e63946; color:#fff; padding:20px 0; text-align:center; }
-  header h1 { margin:0; font-size:2.5rem; }
-  header p { margin:5px 0; font-size:1.2rem; }
-  nav { background:#222; padding:10px; text-align:center; }
-  nav a { color:#fff; margin:0 10px; text-decoration:none; font-weight:bold; }
-  section { padding:40px 20px; max-width:1100px; margin:auto; }
-  h2 { color:#e63946; margin-bottom:20px; }
-  .servicios { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
-  .card { background:#fff; border:1px solid #ddd; border-radius:8px; padding:20px; width:300px; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-  .card h3 { color:#333; }
-  .nosotros { display:flex; flex-wrap:wrap; align-items:center; gap:20px; }
-  .nosotros img { width:300px; border-radius:50%; }
-  blockquote { background:#f4f4f4; padding:15px; border-left:5px solid #e63946; margin:15px 0; font-style:italic; }
-  form { display:flex; flex-direction:column; gap:10px; max-width:500px; margin:auto; }
-  input, textarea { padding:10px; border:1px solid #ccc; border-radius:5px; }
-  button { padding:10px; background:#e63946; color:#fff; border:none; border-radius:5px; cursor:pointer; }
-  footer { background:#222; color:#fff; text-align:center; padding:15px; margin-top:20px; }
-  footer a { color:#fff; }
+  :root {
+    --primary: #e63946;
+    --dark: #111;
+    --light: #f4f4f4;
+  }
+  /* Reset & base styles */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #fff;
+    color: #333;
+    line-height: 1.6;
+  }
+  a {
+    text-decoration: none;
+  }
+  /* Navigation */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(17, 17, 17, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 12px 0;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
+  nav a {
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+  }
+  nav a:hover {
+    color: var(--primary);
+  }
+  /* Hero section */
+  .hero {
+    height: 80vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1557427769-b714250160f5?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+  }
+  .hero h1 {
+    font-size: 3rem;
+    margin: 0 0 10px;
+  }
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    max-width: 700px;
+  }
+  .hero .btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+  .hero .btn:hover {
+    background: #c12837;
+  }
+  /* Generic section styling */
+  section {
+    padding: 80px 20px;
+  }
+  section h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--primary);
+    font-size: 2rem;
+  }
+  /* Services section */
+  .services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+  .service {
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px 20px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+  }
+  .service:hover {
+    transform: translateY(-5px);
+  }
+  .service img {
+    width: 60px;
+    margin-bottom: 20px;
+  }
+  .service h3 {
+    color: #333;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+  .service p {
+    color: #555;
+    font-size: 0.95rem;
+  }
+  /* Nosotros section */
+  .nosotros-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 60px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  .nosotros-container img {
+    flex: 1 1 300px;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  .nosotros-container .texto {
+    flex: 2 1 400px;
+  }
+  .nosotros-container .texto h2 {
+    color: var(--primary);
+    margin-top: 0;
+  }
+  .nosotros-container .texto p {
+    color: #555;
+    line-height: 1.7;
+  }
+  /* Testimonials section */
+  .testimonials {
+    background: var(--light);
+  }
+  .testimonial {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    position: relative;
+    padding-left: 50px;
+  }
+  .testimonial::before {
+    content: '“';
+    font-size: 4rem;
+    color: var(--primary);
+    position: absolute;
+    left: 0;
+    top: -20px;
+  }
+  .testimonial p {
+    font-style: italic;
+    color: #333;
+    margin: 0;
+    font-size: 1.1rem;
+  }
+  .testimonial span {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+    color: #555;
+  }
+  /* Contact section */
+  .contacto {
+    background: var(--dark);
+    color: #fff;
+  }
+  .contacto p {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    font-size: 1rem;
+  }
+  .contacto form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: auto;
+  }
+  .contacto input,
+  .contacto textarea {
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+  }
+  .contacto input[type="submit"] {
+    background: var(--primary);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+  .contacto input[type="submit"]:hover {
+    background: #c12837;
+  }
+  /* Footer */
+  footer {
+    background: #000;
+    color: #fff;
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  footer a {
+    color: #fff;
+    text-decoration: underline;
+  }
 </style>
 </head>
 <body>
-
-<header>
-  <h1>Mente Pyme</h1>
-  <p>Impulsamos tu pyme con datos y estrategia</p>
-</header>
-
+<!-- Navigation -->
 <nav>
-  <a href="#servicios">Servicios</a>
-  <a href="#nosotros">Nosotros</a>
-  <a href="#contacto">Contacto</a>
+  <ul>
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
 </nav>
 
-<section id="inicio">
-  <h2>Bienvenido a Mente Pyme</h2>
-  <p>Te ayudamos a optimizar procesos, reducir costos y aumentar ventas, tomando decisiones basadas en datos y estrategias personalizadas.</p>
-</section>
+<!-- Hero Section -->
+<header id="inicio" class="hero">
+  <h1>Impulsamos tu pyme con datos y estrategia</h1>
+  <p>Reducí costos, aumentá ventas y escalá con decisiones inteligentes.</p>
+  <a href="#contacto" class="btn">Agenda una reunión</a>
+</header>
 
+<!-- Services Section -->
 <section id="servicios">
   <h2>Nuestros Servicios</h2>
-  <div class="servicios">
-    <div class="card">
+  <div class="services-grid">
+    <div class="service">
+      <img src="https://img.icons8.com/ios-filled/100/000000/combo-chart.png" alt="Análisis de Datos">
       <h3>Análisis de Datos</h3>
-      <p>Transformamos tus números en información clara para decisiones estratégicas.</p>
+      <p>Transformamos tus números en decisiones claras con tableros e indicadores.</p>
     </div>
-    <div class="card">
+    <div class="service">
+      <img src="https://img.icons8.com/ios-filled/100/000000/robot.png" alt="Automatización">
       <h3>Automatización</h3>
-      <p>Implementamos herramientas para ahorrar tiempo y evitar errores.</p>
+      <p>Implementamos herramientas para ahorrar tiempo y reducir errores.</p>
     </div>
-    <div class="card">
+    <div class="service">
+      <img src="https://img.icons8.com/ios-filled/100/000000/bullish.png" alt="Marketing Rentable">
       <h3>Marketing Rentable</h3>
-      <p>Creamos campañas con retorno medible y enfocado en resultados.</p>
+      <p>Creamos campañas que convierten y generan retorno real.</p>
     </div>
   </div>
 </section>
 
-<section id="nosotros" class="nosotros">
-  <img src="https://via.placeholder.com/300" alt="Fundador Mente Pyme">
-  <div>
-    <h2>Quiénes Somos</h2>
-    <p>Soy [Tu nombre], fundador de Mente Pyme. Mi misión es acompañar a las pequeñas y medianas empresas en su crecimiento mediante estrategias simples y efectivas, siempre respaldadas por datos.</p>
+<!-- Nosotros Section -->
+<section id="nosotros">
+  <div class="nosotros-container">
+    <img src="https://via.placeholder.com/400x400" alt="Fundador Mente Pyme">
+    <div class="texto">
+      <h2>Quiénes Somos</h2>
+      <p>Soy [Tu nombre], fundador de Mente Pyme. Ayudo a pequeñas y medianas empresas a optimizar sus procesos, reducir costos y vender más, basándome en datos reales y estrategias personalizadas.</p>
+    </div>
   </div>
 </section>
 
-<section id="testimonios">
+<!-- Testimonios Section -->
+<section class="testimonials">
   <h2>Testimonios</h2>
-  <blockquote>"Gracias a Mente Pyme, redujimos costos un 25% en tres meses." – Juan Pérez</blockquote>
-  <blockquote>"Nuestro marketing online se multiplicó por tres gracias a sus estrategias." – Ana López</blockquote>
+  <div class="testimonial">
+    <p>Gracias a Mente Pyme, redujimos nuestros costos en un 25% en tres meses.</p>
+    <span>– Juan Pérez, Panadería La Espiga</span>
+  </div>
+  <div class="testimonial">
+    <p>Nuestro marketing online se triplicó gracias a sus estrategias efectivas.</p>
+    <span>– Ana López, Boutique Alma</span>
+  </div>
 </section>
 
-<section id="contacto">
+<!-- Contacto Section -->
+<section id="contacto" class="contacto">
   <h2>Contacto</h2>
-  <p>Completá el formulario y nos pondremos en contacto en menos de 24 horas.</p>
+  <p>Completá el formulario y te contactaremos en menos de 24 horas.</p>
   <form>
     <input type="text" placeholder="Nombre" required>
     <input type="email" placeholder="Email" required>
     <input type="tel" placeholder="WhatsApp">
     <textarea placeholder="Mensaje" rows="5"></textarea>
-    <button type="submit">Enviar</button>
+    <input type="submit" value="Enviar">
   </form>
-  <p>O escribinos directamente por <a href="https://wa.me/5492600000000" target="_blank">WhatsApp</a></p>
+  <p>O escribinos directamente por <a href="https://wa.me/5492600000000" target="_blank" style="color: var(--primary);">WhatsApp</a></p>
 </section>
 
+<!-- Footer -->
 <footer>
   <p>© 2025 Mente Pyme – Todos los derechos reservados | <a href="#">Política de Privacidad</a></p>
 </footer>

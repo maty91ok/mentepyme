@@ -24,6 +24,7 @@
     background: #fff;
     color: #333;
     line-height: 1.6;
+    scroll-behavior: smooth;
   }
   a {
     text-decoration: none;
@@ -58,7 +59,8 @@
   /* Hero section */
   .hero {
     height: 80vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1557427769-b714250160f5?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+    /* Add a dark overlay over a locally stored background image to create depth */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/hero-bg.png') center/cover no-repeat;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -258,17 +260,17 @@
   <h2>Nuestros Servicios</h2>
   <div class="services-grid">
     <div class="service">
-      <img src="https://img.icons8.com/ios-filled/100/000000/combo-chart.png" alt="Análisis de Datos">
+      <img src="images/data-analysis.png" alt="Análisis de Datos" />
       <h3>Análisis de Datos</h3>
       <p>Transformamos tus números en decisiones claras con tableros e indicadores.</p>
     </div>
     <div class="service">
-      <img src="https://img.icons8.com/ios-filled/100/000000/robot.png" alt="Automatización">
+      <img src="images/automation.png" alt="Automatización" />
       <h3>Automatización</h3>
       <p>Implementamos herramientas para ahorrar tiempo y reducir errores.</p>
     </div>
     <div class="service">
-      <img src="https://img.icons8.com/ios-filled/100/000000/bullish.png" alt="Marketing Rentable">
+      <img src="images/marketing.png" alt="Marketing Rentable" />
       <h3>Marketing Rentable</h3>
       <p>Creamos campañas que convierten y generan retorno real.</p>
     </div>
@@ -304,6 +306,7 @@
 <section id="contacto" class="contacto">
   <h2>Contacto</h2>
   <p>Completá el formulario y te contactaremos en menos de 24 horas.</p>
+  <!-- Modificamos el formulario para que envíe los datos por correo al destinatario especificado -->
   <form action="mailto:mentepyme@gmail.com?subject=Contacto%20Mente%20Pyme" method="POST" enctype="text/plain">
     <input type="text" placeholder="Nombre" required>
     <input type="email" placeholder="Email" required>
